@@ -1,0 +1,106 @@
+---
+import Container from "../ui/Container.astro";
+
+interface Props {
+  coberturaKm: number;
+}
+
+const { coberturaKm } = Astro.props;
+
+const features = [
+  {
+    label: `${coberturaKm} km de radio de cobertura`,
+    detail: "Desde nuestra base hasta donde su flota lo necesite.",
+    icon: `<path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>`,
+  },
+  {
+    label: "Respuesta en campo en menos de 4 horas",
+    detail: "Unidades móviles equipadas listas para salir en el momento.",
+    icon: `<path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>`,
+  },
+  {
+    label: "Técnicos certificados por fabricantes OEM",
+    detail: "Formación directa en Cummins, CAT y Detroit Diesel.",
+    icon: `<path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>`,
+  },
+  {
+    label: "Servicio 24/7 para emergencias en ruta",
+    detail: "Asistencia disponible los 365 días del año, sin excepción.",
+    icon: `<path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S14.93 14 13 14c-1.93 0-3.5-1.57-3.5-3.5S11.07 7 13 7zM4 18c0-2 4-3.1 6.5-3.1.67 0 1.4.08 2.1.23C11.28 15.98 10 17.38 10 19H4v-1zm16 1h-8c0-2 4-3.1 6.5-3.1S20 16 20 18v1z"/>`,
+  },
+];
+
+const stats = [
+  { value: "6",    label: "Unidades móviles" },
+  { value: "<4h",  label: "Tiempo de respuesta" },
+  { value: "365",  label: "Días al año" },
+];
+---
+
+<section
+  id="cobertura"
+  aria-labelledby="coverage-heading"
+  class="bg-surface py-section-y-sm md:py-section-y"
+>
+  <Container>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Map visual -->
+      <div class="flex justify-center order-2 md:order-1">
+        <img
+          src="/coverage-map.svg"
+          alt={`Mapa con radio de cobertura de ${coberturaKm} kilómetros mostrando rutas y localidades servidas`}
+          width="400"
+          height="320"
+          loading="lazy"
+          class="w-full max-w-md rounded-card shadow-card"
+          data-testid="coverage-map"
+        />
+      </div>
+
+      <!-- Text content -->
+      <div class="flex flex-col gap-8 order-1 md:order-2">
+        <div class="flex flex-col gap-3">
+          <h2
+            id="coverage-heading"
+            class="font-display font-bold text-ink leading-tight"
+            style={`font-size: var(--text-section-title)`}
+          >
+            Llegamos Donde Está su Flota
+          </h2>
+          <p class="text-ink-muted leading-body">
+            No espere a que un camión llegue al taller. Nuestros equipos van hasta la unidad, ya sea en patio, en ruta o en zona de carga.
+          </p>
+        </div>
+
+        <!-- Feature list -->
+        <ul class="flex flex-col gap-5" role="list">
+          {features.map((f) => (
+            <li class="flex gap-4">
+              <div class="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center flex-shrink-0 text-brand-primary">
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <Fragment set:html={f.icon} />
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-ink text-sm">{f.label}</p>
+                <p class="text-ink-muted text-sm leading-body">{f.detail}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Mini stats strip -->
+        <div class="grid grid-cols-3 gap-4 pt-2 border-t border-border">
+          {stats.map((s) => (
+            <div class="text-center">
+              <p class="font-display font-bold text-brand-primary" style="font-size: var(--text-stat-value)">{s.value}</p>
+              <p class="text-xs text-ink-muted mt-1 leading-tight">{s.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </Container>
+</section>

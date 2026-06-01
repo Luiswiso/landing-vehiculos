@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 60" width="140" height="60" role="img" aria-label="Cummins">
+  <rect width="140" height="60" fill="#ffffff" rx="4"/>
+  <!-- C emblem centrado en cy=30 -->
+  <path d="M17 16 C10 16 4 22 4 30 C4 38 10 44 17 44 L24 44 L24 38 L17 38 C14 38 11 34 11 30 C11 26 14 22 17 22 L24 22 L24 16 Z" fill="#c8102e"/>
+  <!-- Wordmark centrado en y=30 -->
+  <text x="32" y="30" dominant-baseline="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="14" letter-spacing="1.2" fill="#c8102e">CUMMINS</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 60" width="140" height="60" role="img" aria-label="Sinotruk HOWO">
+  <rect width="140" height="60" fill="#ffffff" rx="4"/>
+  <!-- Red bar left -->
+  <rect x="4" y="10" width="8" height="40" fill="#cc0000" rx="2"/>
+  <!-- HOWO text centered -->
+  <text x="78" y="30" text-anchor="middle" dominant-baseline="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="22" letter-spacing="2" fill="#cc0000">HOWO</text>
+  <!-- Sinotruk subtitle -->
+  <text x="78" y="46" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-weight="600" font-size="9" letter-spacing="3" fill="#555555">SINOTRUK</text>
+</svg>

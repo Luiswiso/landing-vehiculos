@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  /* === Colors (OKLCH) === */
+  --color-brand-primary: oklch(0.55 0.18 250);
+  --color-brand-secondary: oklch(0.72 0.16 60);
+  --color-surface: oklch(0.99 0 0);
+  --color-surface-muted: oklch(0.96 0.005 250);
+  --color-ink: oklch(0.22 0.02 250);
+  --color-ink-muted: oklch(0.5 0.015 250);
+  --color-border: oklch(0.9 0.01 250);
+  --color-success: oklch(0.65 0.16 145);
+  --color-danger: oklch(0.6 0.2 25);
+
+  /* === Spacing scale (matches semantic section rhythm) === */
+  --spacing-section-y: 6rem;
+  --spacing-section-y-sm: 3rem;
+  --spacing-stats-strip: 8rem;
+
+  /* === Typography === */
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-display: "Inter Variable", system-ui, sans-serif;
+  --text-hero: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+  --text-section-title: clamp(1.75rem, 2vw + 1rem, 2.75rem);
+  --text-stat-value: clamp(2rem, 3vw + 1rem, 3.5rem);
+  --leading-tight: 1.1;
+  --leading-body: 1.55;
+
+  /* === Radii & shadows === */
+  --radius-card: 1rem;
+  --radius-pill: 9999px;
+  --shadow-card: 0 8px 24px -12px oklch(0.2 0.02 250 / 0.18);
+
+  /* === Breakpoints (Tailwind 4 reads from @theme) === */
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+
+  /* === Partners logo sizing (from spec-partners-showcase) === */
+  --logo-width: 140px;
+  --logo-height: 60px;
+  --logo-cell-padding: 1rem;
+  --logo-gap: 1.5rem;
+}

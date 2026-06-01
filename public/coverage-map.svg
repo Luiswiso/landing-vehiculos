@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" width="400" height="320" role="img" aria-label="Mapa de cobertura regional de 300 kilómetros">
+  <defs>
+    <radialGradient id="mapBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#0f2040"/>
+      <stop offset="100%" stop-color="#071525"/>
+    </radialGradient>
+    <radialGradient id="zone1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#2563a4" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#2563a4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="zone2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#1a4a8a" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#1a4a8a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="zone3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#122040" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#122040" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#f5a623" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#f5a623" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="320" fill="url(#mapBg)" rx="12"/>
+
+  <!-- Subtle grid overlay -->
+  <g stroke="#ffffff" stroke-width="0.3" opacity="0.04">
+    <line x1="50"  y1="0" x2="50"  y2="320"/>
+    <line x1="100" y1="0" x2="100" y2="320"/>
+    <line x1="150" y1="0" x2="150" y2="320"/>
+    <line x1="200" y1="0" x2="200" y2="320"/>
+    <line x1="250" y1="0" x2="250" y2="320"/>
+    <line x1="300" y1="0" x2="300" y2="320"/>
+    <line x1="350" y1="0" x2="350" y2="320"/>
+    <line x1="0" y1="50"  x2="400" y2="50"/>
+    <line x1="0" y1="100" x2="400" y2="100"/>
+    <line x1="0" y1="150" x2="400" y2="150"/>
+    <line x1="0" y1="200" x2="400" y2="200"/>
+    <line x1="0" y1="250" x2="400" y2="250"/>
+    <line x1="0" y1="300" x2="400" y2="300"/>
+  </g>
+
+  <!-- Coverage zone fills -->
+  <circle cx="200" cy="155" r="140" fill="url(#zone3)"/>
+  <circle cx="200" cy="155" r="95"  fill="url(#zone2)"/>
+  <circle cx="200" cy="155" r="50"  fill="url(#zone1)"/>
+
+  <!-- Road network from center -->
+  <g stroke="#1e3d70" stroke-width="1.5" fill="none" opacity="0.7">
+    <!-- North -->
+    <line x1="200" y1="155" x2="200" y2="15"/>
+    <!-- South -->
+    <line x1="200" y1="155" x2="200" y2="295"/>
+    <!-- East -->
+    <line x1="200" y1="155" x2="385" y2="155"/>
+    <!-- West -->
+    <line x1="200" y1="155" x2="15"  y2="155"/>
+    <!-- NE -->
+    <line x1="200" y1="155" x2="330" y2="45"/>
+    <!-- SW -->
+    <line x1="200" y1="155" x2="70"  y2="265"/>
+    <!-- NW -->
+    <line x1="200" y1="155" x2="70"  y2="45"/>
+    <!-- SE -->
+    <line x1="200" y1="155" x2="330" y2="265"/>
+  </g>
+
+  <!-- Coverage ring 300 km (outer) -->
+  <circle cx="200" cy="155" r="138" fill="none" stroke="#2563a4" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>
+  <!-- Coverage ring 200 km (mid) -->
+  <circle cx="200" cy="155" r="92"  fill="none" stroke="#2563a4" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+  <!-- Coverage ring 100 km (inner) -->
+  <circle cx="200" cy="155" r="46"  fill="none" stroke="#3a7ad4" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+
+  <!-- Distance labels on rings -->
+  <text x="292" y="152" font-family="monospace" font-size="9" fill="#4a9fd4" opacity="0.8" text-anchor="start">300 km</text>
+  <text x="296" y="136" font-family="monospace" font-size="8" fill="#4a9fd4" opacity="0.6" text-anchor="start">200 km</text>
+  <text x="246" y="148" font-family="monospace" font-size="8" fill="#6ab8e0" opacity="0.7" text-anchor="start">100 km</text>
+
+  <!-- City dots along roads (secondary locations) -->
+  <!-- North road -->
+  <circle cx="200" cy="62"  r="4" fill="#2563a4" opacity="0.9"/>
+  <circle cx="200" cy="108" r="3" fill="#1e4a8a" opacity="0.7"/>
+  <!-- South road -->
+  <circle cx="200" cy="248" r="4" fill="#2563a4" opacity="0.9"/>
+  <circle cx="200" cy="202" r="3" fill="#1e4a8a" opacity="0.7"/>
+  <!-- East road -->
+  <circle cx="338" cy="155" r="4" fill="#2563a4" opacity="0.9"/>
+  <circle cx="292" cy="155" r="3" fill="#1e4a8a" opacity="0.7"/>
+  <!-- West road -->
+  <circle cx="62"  cy="155" r="4" fill="#2563a4" opacity="0.9"/>
+  <circle cx="108" cy="155" r="3" fill="#1e4a8a" opacity="0.7"/>
+  <!-- NE road -->
+  <circle cx="308" cy="67"  r="4" fill="#2563a4" opacity="0.9"/>
+  <circle cx="265" cy="108" r="3" fill="#1e4a8a" opacity="0.6"/>
+  <!-- SW road -->
+  <circle cx="92"  cy="243" r="4" fill="#2563a4" opacity="0.9"/>
+  <!-- NW road -->
+  <circle cx="92"  cy="67"  r="4" fill="#2563a4" opacity="0.9"/>
+  <!-- SE road -->
+  <circle cx="308" cy="243" r="4" fill="#2563a4" opacity="0.9"/>
+
+  <!-- Center pin glow -->
+  <circle cx="200" cy="155" r="28" fill="url(#pinGlow)"/>
+  <!-- Center pin base -->
+  <circle cx="200" cy="155" r="12" fill="#0d1f3c" stroke="#f5a623" stroke-width="2"/>
+  <!-- Center dot -->
+  <circle cx="200" cy="155" r="5" fill="#f5a623" filter="url(#glow)"/>
+
+  <!-- "Base" label -->
+  <text x="200" y="176" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#f5a623" letter-spacing="1" opacity="0.9">BASE</text>
+
+  <!-- Bottom label -->
+  <rect x="0" y="298" width="400" height="22" fill="#071525" rx="0 0 12 12" opacity="0.8"/>
+  <text x="200" y="313" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#4a9fd4" letter-spacing="1.5">RADIO DE COBERTURA: 300 KM</text>
+</svg>

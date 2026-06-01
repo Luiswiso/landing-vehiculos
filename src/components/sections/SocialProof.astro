@@ -1,0 +1,121 @@
+---
+import Container from "../ui/Container.astro";
+
+const testimonials = [
+  {
+    id: "testimonial-1",
+    quote:
+      "Pasamos de tener 3 o 4 paradas imprevistas al mes a casi ninguna. El plan de mantenimiento preventivo fue la mejor decisión que tomamos para la flota.",
+    author: "Carlos Mendoza",
+    role: "Gerente de Operaciones",
+    company: "Transportes Andinos C.A.",
+    fleet: "12 unidades • cliente desde 2022",
+    result: "−78% paradas no programadas",
+    initials: "CM",
+    avatarColor: "bg-brand-primary",
+  },
+  {
+    id: "testimonial-2",
+    quote:
+      "Detectaron un problema en la bomba de inyección de un Kenworth T800 antes de que fallara en ruta. Nos evitaron una varada en autopista y una reparación de emergencia.",
+    author: "María González",
+    role: "Directora de Flota",
+    company: "Distribuidora del Centro",
+    fleet: "8 unidades • cliente desde 2023",
+    result: "Reparación mayor evitada a tiempo",
+    initials: "MG",
+    avatarColor: "bg-brand-secondary",
+  },
+  {
+    id: "testimonial-3",
+    quote:
+      "Tengo tres camiones y no tengo tiempo para andar buscando taller. Ellos me avisan cuándo toca el servicio, lo hacen en el día y el precio siempre es el que acordamos.",
+    author: "Héctor Ramírez",
+    role: "Propietario — operador independiente",
+    company: "Transporte Pesado HRV",
+    fleet: "3 unidades • cliente desde 2021",
+    result: "Más de 3 años sin sorpresas",
+    initials: "HR",
+    avatarColor: "bg-brand-primary",
+  },
+];
+---
+
+<section
+  aria-labelledby="socialproof-heading"
+  class="bg-surface-muted py-section-y-sm md:py-section-y"
+>
+  <Container>
+    <div class="flex flex-col gap-12">
+
+      <!-- Section header -->
+      <div class="text-center">
+        <h2
+          id="socialproof-heading"
+          class="font-display font-bold text-ink leading-tight"
+          style={`font-size: var(--text-section-title)`}
+        >
+          Lo Que Dicen Nuestros Clientes
+        </h2>
+        <p class="mt-4 text-ink-muted leading-body max-w-xl mx-auto">
+          Empresas y operadores independientes con flota activa en toda la región.
+        </p>
+      </div>
+
+      <!-- Testimonial cards -->
+      <div class="grid md:grid-cols-3 gap-8">
+        {testimonials.map((t) => (
+          <figure
+            key={t.id}
+            class="flex flex-col gap-5 bg-surface rounded-card p-8 shadow-card border border-border"
+          >
+            <!-- Stars + verified badge -->
+            <div class="flex items-center justify-between">
+              <div class="flex gap-0.5" aria-label="5 estrellas">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <svg key={i} width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path
+                      d="M8 1.5l1.545 3.13 3.455.502-2.5 2.437.59 3.44L8 9.385l-3.09 1.624.59-3.44L3 5.132l3.455-.502L8 1.5z"
+                      fill="#f5a623"
+                    />
+                  </svg>
+                ))}
+              </div>
+              <span class="text-xs font-medium text-success bg-success/10 px-2 py-0.5 rounded-pill">
+                Cliente verificado
+              </span>
+            </div>
+
+            <!-- Quote -->
+            <blockquote class="text-ink leading-body flex-1">
+              <span class="text-brand-secondary font-bold text-2xl leading-none mr-1" aria-hidden="true">"</span>{t.quote}<span class="text-brand-secondary font-bold text-2xl leading-none ml-1" aria-hidden="true">"</span>
+            </blockquote>
+
+            <!-- Result highlight -->
+            <div class="bg-surface-muted rounded-lg px-4 py-2.5 border border-border">
+              <p class="text-xs text-ink-muted uppercase tracking-wide mb-0.5">Resultado</p>
+              <p class="font-semibold text-ink text-sm">{t.result}</p>
+            </div>
+
+            <!-- Author -->
+            <figcaption class="flex items-center gap-3 pt-1 border-t border-border">
+              <div
+                class={`w-10 h-10 rounded-full flex items-center justify-center text-surface font-bold text-sm flex-shrink-0 ${t.avatarColor}`}
+                aria-hidden="true"
+              >
+                {t.initials}
+              </div>
+              <div class="min-w-0">
+                <p class="font-semibold text-ink text-sm truncate">{t.author}</p>
+                <p class="text-xs text-ink-muted truncate">{t.role}</p>
+                <p class="text-xs text-ink-muted truncate">{t.company}</p>
+                <p class="text-xs text-brand-primary mt-0.5">{t.fleet}</p>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+    </div>
+  </Container>
+</section>

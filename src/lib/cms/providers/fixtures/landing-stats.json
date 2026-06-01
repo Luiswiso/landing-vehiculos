@@ -1,0 +1,45 @@
+{
+  "numVehiculos": 500,
+  "numBays": 24,
+  "numTechs": 48,
+  "uptimeRate": 99.2,
+  "coberturaKm": 300,
+  "partners": [
+    {
+      "id": "cummins",
+      "name": "Cummins",
+      "logoUrl": "/partners/cummins.svg",
+      "altText": "Cummins — socio certificado de servicio"
+    },
+    {
+      "id": "cat",
+      "name": "Caterpillar",
+      "logoUrl": "/partners/cat.svg",
+      "altText": "Caterpillar — socio certificado de servicio"
+    },
+    {
+      "id": "detroit-diesel",
+      "name": "Detroit Diesel",
+      "logoUrl": "/partners/detroit-diesel.svg",
+      "altText": "Detroit Diesel — socio certificado de servicio"
+    },
+    {
+      "id": "sinotruk",
+      "name": "Sinotruk HOWO",
+      "logoUrl": "/partners/sinotruk.svg",
+      "altText": "Sinotruk HOWO — socio certificado de servicio"
+    },
+    {
+      "id": "foton",
+      "name": "Foton",
+      "logoUrl": "/partners/foton.svg",
+      "altText": "Foton — socio certificado de servicio"
+    },
+    {
+      "id": "shacman",
+      "name": "Shacman",
+      "logoUrl": "/partners/shacman.svg",
+      "altText": "Shacman — socio certificado de servicio"
+    }
+  ]
+}

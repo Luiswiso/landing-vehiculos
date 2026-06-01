@@ -1,0 +1,31 @@
+---
+// PartnersSkeleton — fallback slot for Partners server:defer island.
+// Grid layout and height must match the resolved Partners section for CLS = 0.
+// Uses --logo-height + --logo-cell-padding tokens to calculate reserved height.
+---
+
+<div
+  data-testid="partners-skeleton"
+  class="bg-surface-muted py-section-y-sm"
+  aria-hidden="true"
+>
+  <div class="max-w-screen-xl mx-auto px-4">
+    <!-- Heading skeleton — same height as h2 with text-section-title + mb-8 -->
+    <div class="flex justify-center mb-8">
+      <div class="h-10 w-48 bg-border rounded-card animate-pulse" />
+    </div>
+    <!-- Logo grid skeleton: 2-col mobile, 3-col tablet, 6-col desktop -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      {
+        Array.from({ length: 6 }).map(() => (
+          <div class="flex items-center justify-center p-4">
+            <div
+              class="bg-border rounded-card animate-pulse"
+              style="width: var(--logo-width); height: var(--logo-height);"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

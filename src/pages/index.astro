@@ -1,0 +1,88 @@
+---
+import Base from "../layouts/Base.astro";
+import Nav from "../components/nav/Nav.astro";
+import Hero from "../components/sections/Hero.astro";
+import StatsStrip from "../components/sections/StatsStrip.astro";
+import StatsStripSkeleton from "../components/sections/StatsStripSkeleton.astro";
+import Services from "../components/sections/Services.astro";
+import Partners from "../components/sections/Partners.astro";
+import PartnersSkeleton from "../components/sections/PartnersSkeleton.astro";
+import Coverage from "../components/sections/Coverage.astro";
+import SocialProof from "../components/sections/SocialProof.astro";
+import FinalCTA from "../components/sections/FinalCTA.astro";
+import { getLandingStats } from "../lib/cms/landing-stats";
+import type { LandingStats } from "../lib/cms/schema";
+
+// Fetch stats for Coverage section and JSON-LD (T-040).
+// If getLandingStats() fails, both Coverage and JSON-LD degrade gracefully.
+let coberturaKm = 300;
+let statsForJsonLd: LandingStats | null = null;
+
+try {
+  const stats = await getLandingStats();
+  coberturaKm = stats.coberturaKm;
+  statsForJsonLd = stats;
+} catch {
+  // Stats unavailable — static sections still render correctly with defaults
+  // JSON-LD will be omitted (never ships broken structured data)
+}
+
+// Build JSON-LD only when stats are valid (design §7.2 — omit on error)
+const jsonLd =
+  statsForJsonLd !== null
+    ? JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "AutoRepair",
+        name: "Servicio de Flota Pesada",
+        areaServed: {
+          "@type": "GeoCircle",
+          geoRadius: statsForJsonLd.coberturaKm * 1000,
+        },
+        knowsAbout: [
+          "Mantenimiento preventivo",
+          "Diagnóstico",
+          "Reparación mayor",
+        ],
+        brand: statsForJsonLd.partners.map((p) => p.name),
+      })
+    : null;
+---
+
+<Base
+  title="Servicio de Flota Pesada | Mantenimiento y Reparación Profesional"
+  description="Expertos en mantenimiento preventivo, diagnóstico y reparación mayor de flota pesada. Más de 500 vehículos atendidos, 24 bahías y cobertura de 300 km."
+>
+  <!-- JSON-LD structured data injected into <head> via named slot (T-040) -->
+  <!-- Only rendered when stats are valid — never ships broken JSON-LD -->
+  {jsonLd !== null && (
+    <script slot="head" type="application/ld+json" set:html={jsonLd} />
+  )}
+
+  <!-- 1. Navigation -->
+  <Nav currentPath="/" />
+
+  <!-- 2. Hero -->
+  <Hero />
+
+  <!-- 3. Stats Strip — server:defer island (Phase 2) -->
+  <StatsStrip server:defer>
+    <StatsStripSkeleton slot="fallback" />
+  </StatsStrip>
+
+  <!-- 4. Services -->
+  <Services />
+
+  <!-- 5. Partners — server:defer island (Phase 3) -->
+  <Partners server:defer>
+    <PartnersSkeleton slot="fallback" />
+  </Partners>
+
+  <!-- 6. Coverage -->
+  <Coverage coberturaKm={coberturaKm} />
+
+  <!-- 7. Social Proof -->
+  <SocialProof />
+
+  <!-- 8. Final CTA -->
+  <FinalCTA />
+</Base>

@@ -1,0 +1,71 @@
+---
+import { HeroPropsSchema } from "../../lib/schemas/hero";
+import Container from "../ui/Container.astro";
+
+// Default props — all placeholder text in Spanish, subtitle <= 30 words
+const defaultProps = {
+  headline: "Mantenimiento y Reparación de Flota Pesada",
+  subtitle:
+    "Más de 500 vehículos atendidos. Técnicos certificados, diagnóstico preciso y cobertura de 300 km para mantener su flota operativa.",
+  cta: {
+    href: "mailto:contacto@flotapesada.com",
+    label: "Solicitar diagnóstico gratuito",
+  },
+  image: {
+    src: "/hero-illustration.svg",
+    alt: "Ilustración de camión de flota pesada en servicio de mantenimiento profesional",
+    width: 800,
+    height: 400,
+  },
+};
+
+const props = HeroPropsSchema.parse(defaultProps);
+---
+
+<section
+  data-testid="hero"
+  class="bg-surface py-section-y-sm md:py-section-y"
+  aria-labelledby="hero-heading"
+>
+  <Container>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Text content -->
+      <div class="flex flex-col gap-6">
+        <h1
+          id="hero-heading"
+          class="font-display font-bold leading-tight text-ink"
+          style={`font-size: var(--text-hero)`}
+        >
+          {props.headline}
+        </h1>
+
+        <p
+          data-testid="hero-subtitle"
+          class="text-ink-muted leading-body text-lg"
+        >
+          {props.subtitle}
+        </p>
+
+        <a
+          data-testid="cta-primary"
+          href={props.cta.href}
+          class="inline-flex items-center justify-center px-8 py-4 bg-brand-primary text-surface font-semibold rounded-pill hover:opacity-90 transition-opacity w-fit"
+        >
+          {props.cta.label}
+        </a>
+      </div>
+
+      <!-- Hero image -->
+      <div class="flex justify-center">
+        <img
+          src={props.image.src}
+          alt={props.image.alt}
+          width={props.image.width}
+          height={props.image.height}
+          loading="eager"
+          class="w-full max-w-lg rounded-card shadow-card"
+        />
+      </div>
+    </div>
+  </Container>
+</section>

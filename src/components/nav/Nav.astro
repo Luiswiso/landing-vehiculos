@@ -1,0 +1,69 @@
+---
+import { NavPropsSchema } from "../../lib/schemas/nav";
+import { MobileToggle } from "./MobileToggle";
+
+interface Props {
+  links?: Array<{ href: string; label: string }>;
+  currentPath?: string;
+}
+
+const defaultLinks = [
+  { href: "/", label: "Inicio" },
+  { href: "/#servicios", label: "Servicios" },
+  { href: "/#cobertura", label: "Cobertura" },
+  { href: "/#contacto", label: "Contacto" },
+];
+
+const rawProps = {
+  links: Astro.props.links ?? defaultLinks,
+  currentPath: Astro.props.currentPath ?? Astro.url.pathname,
+};
+
+const { links, currentPath } = NavPropsSchema.parse(rawProps);
+---
+
+<header class="sticky top-0 z-50 bg-surface border-b border-border shadow-card">
+  <nav
+    aria-label="Navegación principal"
+    class="container mx-auto px-4 md:px-8 max-w-screen-xl flex items-center justify-between h-16"
+  >
+    <!-- Logo / Brand -->
+    <a
+      href="/"
+      class="font-display font-bold text-brand-primary text-lg leading-tight"
+      aria-label="Inicio — Servicio de Flota Pesada"
+    >
+      FlotaPesada
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="hidden md:flex items-center gap-8" role="list">
+      {
+        links.map((link) => {
+          const isActive =
+            currentPath === link.href ||
+            (link.href !== "/" && currentPath.startsWith(link.href));
+          return (
+            <li>
+              <a
+                href={link.href}
+                aria-current={isActive ? "page" : undefined}
+                class:list={[
+                  "text-sm font-medium leading-body transition-colors hover:text-brand-primary",
+                  isActive
+                    ? "text-brand-primary border-b-2 border-brand-primary pb-0.5"
+                    : "text-ink-muted",
+                ]}
+              >
+                {link.label}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+
+    <!-- Mobile toggle island -->
+    <MobileToggle client:load />
+  </nav>
+</header>

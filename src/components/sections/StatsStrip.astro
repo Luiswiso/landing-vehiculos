@@ -1,0 +1,60 @@
+---
+import { getLandingStats } from "../../lib/cms/landing-stats";
+import { LandingStatsValidationError } from "../../lib/cms/schema";
+import Stat from "../ui/Stat.astro";
+import StatsStripSkeleton from "./StatsStripSkeleton.astro";
+
+let stats;
+let errorMessage: string | undefined;
+
+try {
+  stats = await getLandingStats();
+} catch (err) {
+  if (err instanceof LandingStatsValidationError) {
+    errorMessage = `Error al cargar métricas: ${err.message}`;
+  } else {
+    errorMessage = "Las métricas operativas no están disponibles en este momento.";
+  }
+}
+---
+
+{
+  errorMessage ? (
+    <StatsStripSkeleton errorMessage={errorMessage} />
+  ) : stats ? (
+    <section
+      data-testid="stats-strip"
+      aria-labelledby="stats-heading"
+      class="bg-brand-primary py-section-y-sm"
+    >
+      <h2 id="stats-heading" class="sr-only">
+        Métricas operativas
+      </h2>
+      <div class="max-w-screen-xl mx-auto px-4 flex flex-wrap gap-8 items-center justify-center">
+        <div data-testid="stat-num-vehiculos">
+          <Stat
+            label="Vehículos atendidos"
+            value={stats.numVehiculos}
+            suffix="+"
+          />
+        </div>
+        <div data-testid="stat-num-bays">
+          <Stat label="Bahías de servicio" value={stats.numBays} />
+        </div>
+        <div data-testid="stat-num-techs">
+          <Stat label="Técnicos certificados" value={stats.numTechs} />
+        </div>
+        <div data-testid="stat-uptime-rate">
+          <Stat label="Disponibilidad de flota" value={stats.uptimeRate} suffix="%" />
+        </div>
+        <div data-testid="stat-cobertura-km">
+          <Stat label="Cobertura (km)" value={stats.coberturaKm} suffix=" km" />
+        </div>
+      </div>
+    </section>
+  ) : null
+}
+
+<Fragment slot="fallback">
+  <StatsStripSkeleton />
+</Fragment>
